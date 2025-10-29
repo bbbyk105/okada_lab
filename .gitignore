@@ -151,4 +151,6 @@ output/
 *_backup_*.csv
 *.cif
 trimsequence_*.csv
-distance_*.csv
+distance_*.csvapp/storage/pdb_files/
+app/storage/atom_coord/
+app/storage/output/

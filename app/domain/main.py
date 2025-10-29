@@ -14,16 +14,15 @@ import datetime
 import pytz
 from typing import List, Tuple, Optional
 
-from config import Config
-from uniprot_handler import UniprotData
-from structure_analyzer import CifData
-from sequence_processor import (
-    convert_three, trim_sequence, trim2_sequence, 
-    sort_sequence, getcoord
+from app.domain.config import Config
+from app.domain.uniprot_handler import UniprotData
+from app.domain.structure_analyzer import CifData
+from app.domain.sequence_processor import (
+    convert_three, trim_sequence, trim2_sequence, sort_sequence, getcoord
 )
-from distance_calculator import getdistance2, getscore
-from report_generator import generate_log_content, export_to_csv
-from visualization import generate_heatmap
+from app.domain.distance_calculator import getdistance2, getscore
+from app.domain.report_generator import generate_log_content, export_to_csv
+from app.domain.visualization import generate_heatmap
 
 
 def clean_pdb_files_selective(keep_pdblist: List[str], verbose: bool = True):
