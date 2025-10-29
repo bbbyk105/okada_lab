@@ -4,10 +4,12 @@ import os
 import pandas as pd
 
 # 既存モジュールをそのまま import（パスは実際の配置に合わせて調整）
-from config import Config
-from uniprot_handler import UniprotData
-from main import count_pdb, prep, run_DSA, save_score_details, save_summary_statistics
-from visualization import generate_heatmap
+from app.domain.config import Config
+from app.domain.uniprot_handler import UniprotData
+from app.domain.main import (
+count_pdb, prep, run_DSA, save_score_details, save_summary_statistics
+)
+from app.domain.visualization import generate_heatmap
 
 def _ensure_dir(path: str) -> None:
     if not os.path.exists(path):

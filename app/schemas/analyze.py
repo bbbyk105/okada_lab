@@ -1,16 +1,14 @@
-from typing import List, Optional, Literal, Dict, Any
+from typing import List, Optional, Literal
 from pydantic import BaseModel, Field
 
 Method = Literal["X-ray", "NMR", "EM"]
 
 class AnalyzeRequest(BaseModel):
     uniprot_ids: List[str] = Field(..., min_length=1)
-    methods: Optional[List[Method]] = None           # 未指定なら Config に従う
+    methods: Optional[List[Method]] = None   # 未指定なら Config 側の選択に従う
     seq_ratio: Optional[int] = 80
-    cis_threshold: Optional[float] = None            # 未指定なら Config に従う
-    max_pdbs: Optional[int] = None                   # 既存prepに影響しないなら無視可
-    clean_old_pdbs: bool = False                     # 既存運用に合わせ任意
-    export_artifacts: bool = True                    # heatmap等の画像出力を許可
+    cis_threshold: Optional[float] = None
+    export_artifacts: bool = True
     verbose: bool = False
 
 class KPI(BaseModel):
@@ -33,8 +31,8 @@ class AnalyzeItem(BaseModel):
     full_name: Optional[str] = None
     organism: Optional[str] = None
     seq_ratio: Optional[int] = None
-    kpi: KPI
-    artifacts: Artifacts = Artifacts()
+    kpi: KPI = Field(default_factory=KPI)
+    artifacts: Artifacts = Field(default_factory=Artifacts)
     note: Optional[str] = None
 
 class AnalyzeResponse(BaseModel):
